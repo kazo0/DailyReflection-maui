@@ -1,0 +1,10 @@
+<api type="debug" assembly-name="DailyReflection" mvid="1748c612ee2447fa82e814b76d686622">
+  <java-to-managed>
+    <entry java-name="crc6419028082e47670ce/MainActivity" managed-name="DailyReflection.MainActivity, DailyReflection" managed-type-token-id="33554442" />
+    <entry java-name="crc6419028082e47670ce/MainApplication" managed-name="DailyReflection.MainApplication, DailyReflection" managed-type-token-id="33554443" />
+  </java-to-managed>
+  <managed-to-java>
+    <entry java-name="crc6419028082e47670ce/MainActivity" managed-name="DailyReflection.MainActivity, DailyReflection" managed-type-token-id="33554442" />
+    <entry java-name="crc6419028082e47670ce/MainApplication" managed-name="DailyReflection.MainApplication, DailyReflection" managed-type-token-id="33554443" />
+  </managed-to-java>
+</api>
