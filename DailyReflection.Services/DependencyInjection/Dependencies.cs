@@ -3,8 +3,8 @@ using DailyReflection.Services.DailyReflection;
 using DailyReflection.Services.Settings;
 using DailyReflection.Services.Share;
 using Microsoft.Extensions.DependencyInjection;
-using Xamarin.Essentials.Implementation;
-using Xamarin.Essentials.Interfaces;
+
+
 
 namespace DailyReflection.Services.DependencyInjection
 {

@@ -7,8 +7,8 @@ using DailyReflection.Controls;
 using DailyReflection.iOS.Renderers;
 using Foundation;
 using UIKit;
-using Xamarin.Forms;
-using Xamarin.Forms.Platform.iOS;
+
+
 
 [assembly: ExportRenderer(typeof(CustomDatePicker), typeof(CustomDatePickerRenderer))]
 namespace DailyReflection.iOS.Renderers

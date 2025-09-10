@@ -7,8 +7,8 @@ using Android.Content;
 using Android.Graphics.Drawables;
 using DailyReflection.Controls;
 using DailyReflection.Droid.Renderers;
-using Xamarin.Forms;
-using Xamarin.Forms.Platform.Android;
+
+
 
 [assembly: ExportRenderer(typeof(CustomDatePicker), typeof(CustomDatePickerRenderer))]
 namespace DailyReflection.Droid.Renderers

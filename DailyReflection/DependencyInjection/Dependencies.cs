@@ -1,7 +1,7 @@
 ﻿using DailyReflection.Core.Extensions;
 using DailyReflection.Views;
 using Microsoft.Extensions.DependencyInjection;
-using Xamarin.Forms;
+
 
 namespace DailyReflection.DependencyInjection
 {

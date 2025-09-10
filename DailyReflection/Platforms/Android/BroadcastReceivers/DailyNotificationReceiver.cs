@@ -16,8 +16,8 @@ using DailyReflection.Core.Constants;
 using DailyReflection.Droid.Services;
 using DailyReflection.Services;
 using DailyReflection.Services.Settings;
-using Xamarin.Essentials;
-using Xamarin.Forms;
+
+
 
 namespace DailyReflection.Droid.BroadcastReceivers
 {

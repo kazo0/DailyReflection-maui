@@ -4,7 +4,7 @@ using System;
 using System.Threading.Tasks;
 using UIKit;
 using UserNotifications;
-using Xamarin.Forms;
+
 
 namespace DailyReflection.iOS.Services
 {

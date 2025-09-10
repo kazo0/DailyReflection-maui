@@ -7,8 +7,8 @@ using DailyReflection.Core.Constants;
 using DailyReflection.Droid.BroadcastReceivers;
 using DailyReflection.Droid.Permissions;
 using DailyReflection.Services.Notification;
-using Xamarin.Essentials;
-using Xamarin.Forms;
+
+
 
 namespace DailyReflection.Droid.Services
 {

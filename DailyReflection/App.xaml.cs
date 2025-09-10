@@ -9,9 +9,6 @@ using DailyReflection.Views;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using System;
 using System.Threading.Tasks;
-using Xamarin.Essentials;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace DailyReflection
 {

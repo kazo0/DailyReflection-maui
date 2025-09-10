@@ -11,8 +11,8 @@ using Android.Views;
 using Android.Widget;
 using DailyReflection.Controls;
 using DailyReflection.Droid.Renderers;
-using Xamarin.Forms;
-using Xamarin.Forms.Platform.Android;
+
+
 
 [assembly: ExportRenderer(typeof(CustomTimePicker), typeof(CustomTimePickerRenderer))]
 namespace DailyReflection.Droid.Renderers
