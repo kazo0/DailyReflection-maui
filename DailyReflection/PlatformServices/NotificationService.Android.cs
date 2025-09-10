@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if ANDROID
+using System;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
@@ -10,7 +11,7 @@ using DailyReflection.Services.Notification;
 
 
 
-namespace DailyReflection.Droid.Services
+namespace DailyReflection.PlatformServices
 {
 	public class NotificationService : INotificationService
 	{
@@ -103,3 +104,4 @@ namespace DailyReflection.Droid.Services
 		}
 	}
 }
+#endif

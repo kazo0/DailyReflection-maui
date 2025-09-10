@@ -14,7 +14,7 @@ using Android.Widget;
 using AndroidX.Core.App;
 using DailyReflection.Core.Constants;
 using DailyReflection.Droid.Services;
-using DailyReflection.Services;
+using DailyReflection.PlatformServices;
 using DailyReflection.Services.Settings;
 
 

@@ -14,11 +14,6 @@ namespace DailyReflection.Services.DependencyInjection
 		{
 			services.AddDataDependencies();
 			services.AddTransient<IDailyReflectionService, DailyReflectionService>();
-			services.AddTransient<ISettingsService, SettingsService>();
-			services.AddTransient<IShareService, ShareService>();
-
-			services.AddTransient<IShare, ShareImplementation>();
-			services.AddTransient<IPreferences, PreferencesImplementation>();
 		}
 	}
 }

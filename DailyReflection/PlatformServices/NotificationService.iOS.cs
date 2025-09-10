@@ -1,4 +1,5 @@
-﻿using DailyReflection.Services.Notification;
+﻿#if IOS || MACCATALYST
+using DailyReflection.Services.Notification;
 using Foundation;
 using System;
 using System.Threading.Tasks;
@@ -6,7 +7,7 @@ using UIKit;
 using UserNotifications;
 
 
-namespace DailyReflection.iOS.Services
+namespace DailyReflection.PlatformServices
 {
 	public class NotificationService : INotificationService
 	{
@@ -26,7 +27,7 @@ namespace DailyReflection.iOS.Services
 
 		public async Task<bool> TryScheduleDailyNotification(DateTime notificationTime, bool shouldRequestPermission = true)
 		{
-			var canScheduleNotifications = await CanScheduleNotifications() || (shouldRequestPermission && await RequestNotificationPermission());
+			var canScheduleNotifications = await CanScheduleNotifications() || shouldRequestPermission && await RequestNotificationPermission();
 			if (!canScheduleNotifications)
 			{
 				return false;
@@ -76,3 +77,4 @@ namespace DailyReflection.iOS.Services
 		}
 	}
 }
+#endif

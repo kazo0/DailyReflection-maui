@@ -1,4 +1,8 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using DailyReflection.DependencyInjection;
+using DailyReflection.Presentation.DependencyInjection;
+using DailyReflection.Services.Settings;
+using DailyReflection.Services.Share;
+using Microsoft.Extensions.Logging;
 
 namespace DailyReflection
 {
@@ -16,6 +20,12 @@ namespace DailyReflection
 					fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 					fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 				});
+
+
+	
+			builder.Services.AddPages();
+			builder.Services.AddPlatformServices();
+			builder.Services.AddPresentationDependencies();
 
 #if DEBUG
 			builder.Logging.AddDebug();
