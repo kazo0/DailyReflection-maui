@@ -7,39 +7,38 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace DailyReflection
+namespace DailyReflection;
+
+public static class Startup
 {
-	public static class Startup
+	public static IServiceProvider ServiceProvider { get; set; }
+
+	public static void Init(Action<HostBuilderContext, IServiceCollection> platformConfigure)
 	{
-		public static IServiceProvider ServiceProvider { get; set; }
+		var host = Host.CreateDefaultBuilder()
+			.ConfigureAppConfiguration(config =>
+			{
+				config.SetFileProvider(new EmbeddedFileProvider(typeof(Startup).Assembly));
+				config.AddJsonFile("appsettings.json");
+			})
+			.ConfigureServices((ctx, sc) => 
+			{
+				ConfigureServices(ctx, sc);
+				platformConfigure?.Invoke(ctx, sc);
 
-		public static void Init(Action<HostBuilderContext, IServiceCollection> platformConfigure)
-		{
-			var host = Host.CreateDefaultBuilder()
-				.ConfigureAppConfiguration(config =>
-				{
-					config.SetFileProvider(new EmbeddedFileProvider(typeof(Startup).Assembly));
-					config.AddJsonFile("appsettings.json");
-				})
-				.ConfigureServices((ctx, sc) => 
-				{
-					ConfigureServices(ctx, sc);
-					platformConfigure?.Invoke(ctx, sc);
+			})
+			.ConfigureLogging(builder =>
+			{
+				builder.AddConsole();
+			})
+			.Build();
 
-				})
-				.ConfigureLogging(builder =>
-				{
-					builder.AddConsole();
-				})
-				.Build();
+		ServiceProvider = host.Services;
+	}
 
-			ServiceProvider = host.Services;
-		}
-
-		private static void ConfigureServices(HostBuilderContext ctx, IServiceCollection services)
-		{
-			services.AddPages();
-			services.AddPresentationDependencies();
-		}
+	private static void ConfigureServices(HostBuilderContext ctx, IServiceCollection services)
+	{
+		services.AddPages();
+		services.AddPresentationDependencies();
 	}
 }

@@ -6,20 +6,19 @@ using DailyReflection.Views;
 using Microsoft.Extensions.DependencyInjection;
 
 
-namespace DailyReflection.DependencyInjection
-{
-	public static class Dependencies
-	{
-		public static void AddPages(this IServiceCollection services)
-		{
-			services.AddAllSubclassesOf<Page>(typeof(AppShell).Assembly, ServiceLifetime.Singleton);
-		}
+namespace DailyReflection.DependencyInjection;
 
-		public static void AddPlatformServices(this IServiceCollection services)
-		{
-			services.AddSingleton<ISettingsService, PlatformServices.SettingsService>();
-			services.AddSingleton<IShareService, PlatformServices.ShareService>();
-			services.AddTransient<INotificationService, PlatformServices.NotificationService>();
-		}
+public static class Dependencies
+{
+	public static void AddPages(this IServiceCollection services)
+	{
+		services.AddAllSubclassesOf<Page>(typeof(AppShell).Assembly, ServiceLifetime.Singleton);
+	}
+
+	public static void AddPlatformServices(this IServiceCollection services)
+	{
+		services.AddSingleton<ISettingsService, PlatformServices.SettingsService>();
+		services.AddSingleton<IShareService, PlatformServices.ShareService>();
+		services.AddTransient<INotificationService, PlatformServices.NotificationService>();
 	}
 }

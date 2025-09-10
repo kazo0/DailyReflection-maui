@@ -5,25 +5,24 @@ using System.Globalization;
 using System.Text;
 
 
-namespace DailyReflection.Converters
+namespace DailyReflection.Converters;
+
+public class IsDisplayPreferenceToBoolConverter : IValueConverter
 {
-	public class IsDisplayPreferenceToBoolConverter : IValueConverter
+	public SoberTimeDisplayPreference DisplayPreference { get; set; }
+
+	public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 	{
-		public SoberTimeDisplayPreference DisplayPreference { get; set; }
-
-		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+		if (value is SoberTimeDisplayPreference @enum)
 		{
-			if (value is SoberTimeDisplayPreference @enum)
-			{
-				return @enum == DisplayPreference;
-			}
-
-			return false;
+			return @enum == DisplayPreference;
 		}
 
-		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-		{
-			throw new NotImplementedException();
-		}
+		return false;
+	}
+
+	public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+	{
+		throw new NotImplementedException();
 	}
 }

@@ -11,14 +11,14 @@ using DailyReflection.Droid.Renderers;
 
 
 [assembly: ExportRenderer(typeof(CustomDatePicker), typeof(CustomDatePickerRenderer))]
-namespace DailyReflection.Droid.Renderers
-{
-	public class CustomDatePickerRenderer : DatePickerRenderer
-	{
-        public CustomDatePickerRenderer(Context context) : base(context)
-		{
+namespace DailyReflection.Droid.Renderers;
 
-		}
+public class CustomDatePickerRenderer : DatePickerRenderer
+{
+        public CustomDatePickerRenderer(Context context) : base(context)
+	{
+
+	}
         
         protected override void OnElementChanged(ElementChangedEventArgs<DatePicker> e)
         {
@@ -29,4 +29,3 @@ namespace DailyReflection.Droid.Renderers
             }
         }
     }
-}

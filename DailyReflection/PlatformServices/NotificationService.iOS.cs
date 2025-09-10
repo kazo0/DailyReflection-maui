@@ -7,74 +7,73 @@ using UIKit;
 using UserNotifications;
 
 
-namespace DailyReflection.PlatformServices
+namespace DailyReflection.PlatformServices;
+
+public class NotificationService : INotificationService
 {
-	public class NotificationService : INotificationService
+	private const int MessageId = 1;
+
+	public void CancelNotifications()
 	{
-		private const int MessageId = 1;
+		UNUserNotificationCenter.Current.RemoveAllPendingNotificationRequests();
+	}
 
-		public void CancelNotifications()
+	public async Task<bool> CanScheduleNotifications()
+	{
+		var settings = await UNUserNotificationCenter.Current.GetNotificationSettingsAsync();
+
+		return settings.AuthorizationStatus == UNAuthorizationStatus.Authorized;
+	}
+
+	public async Task<bool> TryScheduleDailyNotification(DateTime notificationTime, bool shouldRequestPermission = true)
+	{
+		var canScheduleNotifications = await CanScheduleNotifications() || shouldRequestPermission && await RequestNotificationPermission();
+		if (!canScheduleNotifications)
 		{
-			UNUserNotificationCenter.Current.RemoveAllPendingNotificationRequests();
+			return false;
 		}
 
-		public async Task<bool> CanScheduleNotifications()
+		var content = new UNMutableNotificationContent()
 		{
-			var settings = await UNUserNotificationCenter.Current.GetNotificationSettingsAsync();
+			Title = "Daily Reflection",
+			Subtitle = "",
+			Body = "Time for the daily reflection!",
+			Badge = 1
+		};
 
-			return settings.AuthorizationStatus == UNAuthorizationStatus.Authorized;
-		}
+		var time = notificationTime.TimeOfDay;
 
-		public async Task<bool> TryScheduleDailyNotification(DateTime notificationTime, bool shouldRequestPermission = true)
+		var dateComponents = new NSDateComponents
 		{
-			var canScheduleNotifications = await CanScheduleNotifications() || shouldRequestPermission && await RequestNotificationPermission();
-			if (!canScheduleNotifications)
-			{
-				return false;
-			}
+			Hour = time.Hours,
+			Minute = time.Minutes
+		};
 
-			var content = new UNMutableNotificationContent()
-			{
-				Title = "Daily Reflection",
-				Subtitle = "",
-				Body = "Time for the daily reflection!",
-				Badge = 1
-			};
+		var trigger = UNCalendarNotificationTrigger.CreateTrigger(dateComponents, repeats: true);
+		var request = UNNotificationRequest.FromIdentifier(MessageId.ToString(), content, trigger);
 
-			var time = notificationTime.TimeOfDay;
+		CancelNotifications();
 
-			var dateComponents = new NSDateComponents
-			{
-				Hour = time.Hours,
-				Minute = time.Minutes
-			};
+		await UNUserNotificationCenter.Current.AddNotificationRequestAsync(request);
 
-			var trigger = UNCalendarNotificationTrigger.CreateTrigger(dateComponents, repeats: true);
-			var request = UNNotificationRequest.FromIdentifier(MessageId.ToString(), content, trigger);
+		return true;
+	}
 
-			CancelNotifications();
+	public void ShowNotificationSettings()
+	{
+		var settingsUrl = new NSUrl(UIApplication.OpenNotificationSettingsUrl);
 
-			await UNUserNotificationCenter.Current.AddNotificationRequestAsync(request);
-
-			return true;
-		}
-
-		public void ShowNotificationSettings()
+		if (UIApplication.SharedApplication.CanOpenUrl(settingsUrl))
 		{
-			var settingsUrl = new NSUrl(UIApplication.OpenNotificationSettingsUrl);
-
-			if (UIApplication.SharedApplication.CanOpenUrl(settingsUrl))
-			{
-				UIApplication.SharedApplication.OpenUrl(settingsUrl);
-			}
+			UIApplication.SharedApplication.OpenUrl(settingsUrl);
 		}
+	}
 
-		private static async Task<bool> RequestNotificationPermission()
-		{
-			(var granted, _) = await UNUserNotificationCenter.Current.RequestAuthorizationAsync(UNAuthorizationOptions.Alert);
+	private static async Task<bool> RequestNotificationPermission()
+	{
+		(var granted, _) = await UNUserNotificationCenter.Current.RequestAuthorizationAsync(UNAuthorizationOptions.Alert);
 
-			return granted;
-		}
+		return granted;
 	}
 }
 #endif

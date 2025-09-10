@@ -4,13 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DailyReflection.Data.DependencyInjection
+namespace DailyReflection.Data.DependencyInjection;
+
+public static class Dependencies
 {
-	public static class Dependencies
+	public static void AddDataDependencies(this IServiceCollection services)
 	{
-		public static void AddDataDependencies(this IServiceCollection services)
-		{
-			services.AddSingleton<IDailyReflectionDatabase, DailyReflectionDatabase>();
-		}
+		services.AddSingleton<IDailyReflectionDatabase, DailyReflectionDatabase>();
 	}
 }

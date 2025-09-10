@@ -3,12 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DailyReflection.Presentation.Messages
+namespace DailyReflection.Presentation.Messages;
+
+public sealed class SoberDateChangedMessage : ValueChangedMessage<DateTime>
 {
-	public sealed class SoberDateChangedMessage : ValueChangedMessage<DateTime>
+	public SoberDateChangedMessage(DateTime value) : base(value)
 	{
-		public SoberDateChangedMessage(DateTime value) : base(value)
-		{
-		}
 	}
 }

@@ -9,25 +9,24 @@ using System.Threading.Tasks;
 
 
 
-namespace DailyReflection.Views
+namespace DailyReflection.Views;
+
+[XamlCompilation(XamlCompilationOptions.Compile)]
+public partial class SobrietyTimeView : ContentPage
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class SobrietyTimeView : ContentPage
+	public SobrietyTimeView()
 	{
-		public SobrietyTimeView()
-		{
-			InitializeComponent();
-			BindingContext = Startup.ServiceProvider.GetService<SobrietyTimeViewModel>();
-		}
+		InitializeComponent();
+		BindingContext = Startup.ServiceProvider.GetService<SobrietyTimeViewModel>();
+	}
 
-		protected override void OnAppearing()
-		{
-			base.OnAppearing();
+	protected override void OnAppearing()
+	{
+		base.OnAppearing();
 
-			if (BindingContext is ViewModelBase vm)
-			{
-				vm.IsActive = true;
-			}
+		if (BindingContext is ViewModelBase vm)
+		{
+			vm.IsActive = true;
 		}
 	}
 }

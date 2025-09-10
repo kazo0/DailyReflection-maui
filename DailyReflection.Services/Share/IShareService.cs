@@ -4,10 +4,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace DailyReflection.Services.Share
+namespace DailyReflection.Services.Share;
+
+public interface IShareService
 {
-	public interface IShareService
-	{
-		Task ShareText(string title, string body);
-	}
+	Task ShareText(string title, string body);
 }

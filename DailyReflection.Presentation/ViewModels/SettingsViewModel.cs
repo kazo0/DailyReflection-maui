@@ -13,112 +13,111 @@ using System.Linq;
 using System.Threading.Tasks;
 
 
-namespace DailyReflection.Presentation.ViewModels
+namespace DailyReflection.Presentation.ViewModels;
+
+public class SettingsViewModel : ViewModelBase
 {
-	public class SettingsViewModel : ViewModelBase
+	private readonly INotificationService _notificationService;
+	private readonly ISettingsService _settingsService;
+	private bool _notificationsEnabled;
+	private DateTime _soberDate;
+	private DateTime _notificationTime;
+
+	public bool NotificationsEnabled
 	{
-		private readonly INotificationService _notificationService;
-		private readonly ISettingsService _settingsService;
-		private bool _notificationsEnabled;
-		private DateTime _soberDate;
-		private DateTime _notificationTime;
-
-		public bool NotificationsEnabled
+		get => _notificationsEnabled;
+		set
 		{
-			get => _notificationsEnabled;
-			set
-			{
-				_settingsService.Set(PreferenceConstants.NotificationsEnabled, value);
-				SetProperty(ref _notificationsEnabled, value);
-			}
+			_settingsService.Set(PreferenceConstants.NotificationsEnabled, value);
+			SetProperty(ref _notificationsEnabled, value);
 		}
+	}
 
-		public DateTime NotificationTime
+	public DateTime NotificationTime
+	{
+		get => _notificationTime;
+		set
 		{
-			get => _notificationTime;
-			set
-			{
-				_settingsService.Set(PreferenceConstants.NotificationTime, value);
-				SetProperty(ref _notificationTime, value);
-			}
+			_settingsService.Set(PreferenceConstants.NotificationTime, value);
+			SetProperty(ref _notificationTime, value);
 		}
+	}
 
-		public DateTime SoberDate
+	public DateTime SoberDate
+	{
+		get => _soberDate;
+		set
 		{
-			get => _soberDate;
-			set
-			{
-				_settingsService.Set(PreferenceConstants.SoberDate, value);
-				SetProperty(ref _soberDate, value);
-				OnSoberDateChanged();
-			}
+			_settingsService.Set(PreferenceConstants.SoberDate, value);
+			SetProperty(ref _soberDate, value);
+			OnSoberDateChanged();
 		}
+	}
 
-		private SoberTimeDisplayPreference _soberTimeDisplayPreference;
+	private SoberTimeDisplayPreference _soberTimeDisplayPreference;
 
-		public SoberTimeDisplayPreference SoberTimeDisplayPreference
+	public SoberTimeDisplayPreference SoberTimeDisplayPreference
+	{
+		get => _soberTimeDisplayPreference;
+		set
 		{
-			get => _soberTimeDisplayPreference;
-			set
-			{
-				_settingsService.Set(PreferenceConstants.SoberTimeDisplay, (int)value);
-				SetProperty(ref _soberTimeDisplayPreference, value);
-				OnSoberTimeDisplayPreferenceChanged();
+			_settingsService.Set(PreferenceConstants.SoberTimeDisplay, (int)value);
+			SetProperty(ref _soberTimeDisplayPreference, value);
+			OnSoberTimeDisplayPreferenceChanged();
 
-			}
 		}
+	}
 
-		public DateTime MaxDate => DateTime.Today;
+	public DateTime MaxDate => DateTime.Today;
 
-		public List<SoberTimeDisplayPreference> AllSoberTimeDisplayPreferences => Enum.GetValues(typeof(SoberTimeDisplayPreference)).Cast<SoberTimeDisplayPreference>().ToList();
+	public List<SoberTimeDisplayPreference> AllSoberTimeDisplayPreferences => Enum.GetValues(typeof(SoberTimeDisplayPreference)).Cast<SoberTimeDisplayPreference>().ToList();
 
-		public SettingsViewModel(
-			INotificationService notificationService,
-			ISettingsService settingsService)
+	public SettingsViewModel(
+		INotificationService notificationService,
+		ISettingsService settingsService)
+	{
+		_notificationService = notificationService;
+		_settingsService = settingsService;
+
+		_notificationsEnabled = _settingsService.Get(PreferenceConstants.NotificationsEnabled, false);
+		_notificationTime = _settingsService.Get(PreferenceConstants.NotificationTime, DateTime.MinValue);
+		_soberDate = _settingsService.Get(PreferenceConstants.SoberDate, DateTime.Now);
+		_soberTimeDisplayPreference = (SoberTimeDisplayPreference)_settingsService.Get(PreferenceConstants.SoberTimeDisplay, 0);
+	}
+
+	protected override void OnPropertyChanged(PropertyChangedEventArgs e)
+	{
+		base.OnPropertyChanged(e);
+
+		if (e.PropertyName == nameof(NotificationsEnabled))
 		{
-			_notificationService = notificationService;
-			_settingsService = settingsService;
-
-			_notificationsEnabled = _settingsService.Get(PreferenceConstants.NotificationsEnabled, false);
-			_notificationTime = _settingsService.Get(PreferenceConstants.NotificationTime, DateTime.MinValue);
-			_soberDate = _settingsService.Get(PreferenceConstants.SoberDate, DateTime.Now);
-			_soberTimeDisplayPreference = (SoberTimeDisplayPreference)_settingsService.Get(PreferenceConstants.SoberTimeDisplay, 0);
+			Task.Run(UpdateNotifications);
 		}
-
-		protected override void OnPropertyChanged(PropertyChangedEventArgs e)
+		else if (e.PropertyName == nameof(NotificationTime))
 		{
-			base.OnPropertyChanged(e);
-
-			if (e.PropertyName == nameof(NotificationsEnabled))
-			{
-				Task.Run(UpdateNotifications);
-			}
-			else if (e.PropertyName == nameof(NotificationTime))
-			{
-				Task.Run(UpdateNotifications);
-			}
+			Task.Run(UpdateNotifications);
 		}
+	}
 
-		private async Task UpdateNotifications()
+	private async Task UpdateNotifications()
+	{
+		if (NotificationsEnabled)
 		{
-			if (NotificationsEnabled)
-			{
-				await _notificationService.TryScheduleDailyNotification(_notificationTime);
-			}
-			else
-			{
-				_notificationService.CancelNotifications();
-			}
+			await _notificationService.TryScheduleDailyNotification(_notificationTime);
 		}
-
-		private void OnSoberDateChanged()
+		else
 		{
-			WeakReferenceMessenger.Default.Send(new SoberDateChangedMessage(SoberDate));
+			_notificationService.CancelNotifications();
 		}
+	}
 
-		private void OnSoberTimeDisplayPreferenceChanged()
-		{
-			WeakReferenceMessenger.Default.Send(new SoberTimeDisplayPreferenceChangedMessage(SoberTimeDisplayPreference));
-		}
+	private void OnSoberDateChanged()
+	{
+		WeakReferenceMessenger.Default.Send(new SoberDateChangedMessage(SoberDate));
+	}
+
+	private void OnSoberTimeDisplayPreferenceChanged()
+	{
+		WeakReferenceMessenger.Default.Send(new SoberTimeDisplayPreferenceChangedMessage(SoberTimeDisplayPreference));
 	}
 }

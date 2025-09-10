@@ -4,30 +4,29 @@ using System;
 
 
 
-namespace DailyReflection.Views
+namespace DailyReflection.Views;
+
+[XamlCompilation(XamlCompilationOptions.Compile)]
+public partial class DailyReflectionView : ContentPage
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class DailyReflectionView : ContentPage
+	public DailyReflectionView()
 	{
-		public DailyReflectionView()
-		{
-			InitializeComponent();
-			BindingContext = Startup.ServiceProvider.GetService<DailyReflectionViewModel>();
-		}
+		InitializeComponent();
+		BindingContext = Startup.ServiceProvider.GetService<DailyReflectionViewModel>();
+	}
 
-		protected override void OnAppearing()
-		{
-			base.OnAppearing();
+	protected override void OnAppearing()
+	{
+		base.OnAppearing();
 
-			if (BindingContext is DailyReflectionViewModel vm)
-			{
-				MainThread.BeginInvokeOnMainThread(async () => await vm.Init());
-			}
-		}
-
-		private void ToolbarItem_Clicked(object sender, EventArgs e)
+		if (BindingContext is DailyReflectionViewModel vm)
 		{
-			DatePicker.Focus();
+			MainThread.BeginInvokeOnMainThread(async () => await vm.Init());
 		}
+	}
+
+	private void ToolbarItem_Clicked(object sender, EventArgs e)
+	{
+		DatePicker.Focus();
 	}
 }

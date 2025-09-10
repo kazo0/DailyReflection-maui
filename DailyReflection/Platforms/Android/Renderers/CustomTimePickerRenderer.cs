@@ -15,8 +15,8 @@ using DailyReflection.Droid.Renderers;
 
 
 [assembly: ExportRenderer(typeof(CustomTimePicker), typeof(CustomTimePickerRenderer))]
-namespace DailyReflection.Droid.Renderers
-{
+namespace DailyReflection.Droid.Renderers;
+
     public class CustomTimePickerRenderer : TimePickerRenderer
     {
         public CustomTimePickerRenderer(Context context) : base(context)
@@ -33,4 +33,3 @@ namespace DailyReflection.Droid.Renderers
             }
         }
     }
-}

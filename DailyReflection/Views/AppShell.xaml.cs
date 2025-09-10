@@ -1,14 +1,13 @@
 ﻿
 
 
-namespace DailyReflection.Views
+namespace DailyReflection.Views;
+
+[XamlCompilation(XamlCompilationOptions.Compile)]
+public partial class AppShell : Shell
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class AppShell : Shell
+	public AppShell()
 	{
-		public AppShell()
-		{
-			InitializeComponent();
-		}
+		InitializeComponent();
 	}
 }

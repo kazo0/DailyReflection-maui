@@ -11,10 +11,10 @@ using UIKit;
 
 
 [assembly: ExportRenderer(typeof(CustomDatePicker), typeof(CustomDatePickerRenderer))]
-namespace DailyReflection.iOS.Renderers
+namespace DailyReflection.iOS.Renderers;
+
+public class CustomDatePickerRenderer : DatePickerRenderer
 {
-	public class CustomDatePickerRenderer : DatePickerRenderer
-	{
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             base.OnElementPropertyChanged(sender, e);
@@ -29,4 +29,3 @@ namespace DailyReflection.iOS.Renderers
             }
         }
     }
-}

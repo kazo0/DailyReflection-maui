@@ -3,9 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DailyReflection.Presentation.Messages
+namespace DailyReflection.Presentation.Messages;
+
+public class NotificationPermissionRequestMessage : AsyncRequestMessage<bool>
 {
-	public class NotificationPermissionRequestMessage : AsyncRequestMessage<bool>
-	{
-	}
 }
