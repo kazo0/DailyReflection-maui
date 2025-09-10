@@ -1,7 +1,5 @@
 ﻿using DailyReflection.Data.DependencyInjection;
 using DailyReflection.Services.DailyReflection;
-using DailyReflection.Services.Settings;
-using DailyReflection.Services.Share;
 using Microsoft.Extensions.DependencyInjection;
 
 

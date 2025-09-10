@@ -2,9 +2,6 @@
 using DailyReflection.Presentation.ViewModels;
 using DailyReflection.Services.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DailyReflection.Presentation.DependencyInjection;
 

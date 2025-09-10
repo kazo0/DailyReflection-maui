@@ -1,15 +1,4 @@
-﻿using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Text;
-using static Xamarin.Essentials.Permissions;
+﻿using Android.OS;
 
 namespace DailyReflection.Droid.Permissions;
 
@@ -20,7 +9,7 @@ public class NotificationPermission : BasePlatformPermission
 	private static List<(string androidPermission, bool isRuntime)> GetPermissionList()
 	{
 		var perms = new List<(string androidPermission, bool isRuntime)>();
-		
+
 		if (Build.VERSION.SdkInt >= BuildVersionCodes.Tiramisu)
 		{
 			perms.Add((Android.Manifest.Permission.PostNotifications, true));

@@ -3,7 +3,6 @@ using DailyReflection.Services.Notification;
 using DailyReflection.Services.Settings;
 using DailyReflection.Services.Share;
 using DailyReflection.Views;
-using Microsoft.Extensions.DependencyInjection;
 
 
 namespace DailyReflection.DependencyInjection;

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.Content;
-using Android.Graphics.Drawables;
+﻿using Android.Content;
 using DailyReflection.Controls;
 using DailyReflection.Droid.Renderers;
 
@@ -15,17 +9,17 @@ namespace DailyReflection.Droid.Renderers;
 
 public class CustomDatePickerRenderer : DatePickerRenderer
 {
-        public CustomDatePickerRenderer(Context context) : base(context)
+	public CustomDatePickerRenderer(Context context) : base(context)
 	{
 
 	}
-        
-        protected override void OnElementChanged(ElementChangedEventArgs<DatePicker> e)
-        {
-            base.OnElementChanged(e);
-            if (Control != null)
-            {
-                Control.Background = null;
-            }
-        }
-    }
+
+	protected override void OnElementChanged(ElementChangedEventArgs<DatePicker> e)
+	{
+		base.OnElementChanged(e);
+		if (Control != null)
+		{
+			Control.Background = null;
+		}
+	}
+}

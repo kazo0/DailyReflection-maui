@@ -1,14 +1,11 @@
-﻿using System;
-using System.Threading.Tasks;
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using DailyReflection.Core.Constants;
-using DailyReflection.Droid.Services;
 
 namespace DailyReflection.Droid.BroadcastReceivers;
 
 [BroadcastReceiver(Enabled = true, Exported = true)]
-[IntentFilter(new [] { Intent.ActionBootCompleted, AlarmManager.ActionScheduleExactAlarmPermissionStateChanged }, 
+[IntentFilter(new[] { Intent.ActionBootCompleted, AlarmManager.ActionScheduleExactAlarmPermissionStateChanged },
 	Categories = new[] { "android.intent.category.DEFAULT" })]
 public class WakeUpAlarmReceiver : BroadcastReceiver
 {

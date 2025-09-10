@@ -1,14 +1,8 @@
 ﻿using DailyReflection.Core.Constants;
 using DailyReflection.Data.Databases;
-using DailyReflection.Presentation.Messages;
-using DailyReflection.Presentation.ViewModels;
-using DailyReflection.Services;
 using DailyReflection.Services.Notification;
 using DailyReflection.Services.Settings;
 using DailyReflection.Views;
-using Microsoft.Toolkit.Mvvm.Messaging;
-using System;
-using System.Threading.Tasks;
 
 namespace DailyReflection;
 

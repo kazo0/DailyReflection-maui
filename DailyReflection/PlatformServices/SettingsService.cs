@@ -1,8 +1,5 @@
 ﻿using DailyReflection.Core.Constants;
 using DailyReflection.Services.Settings;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DailyReflection.PlatformServices;
 

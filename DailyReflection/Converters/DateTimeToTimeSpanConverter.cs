@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Text;
+﻿using System.Globalization;
 
 
 namespace DailyReflection.Converters;
@@ -17,7 +14,7 @@ public class DateTimeToTimeSpanConverter : IValueConverter
 
 		if (value is DateTime dateTime)
 		{
-			return dateTime.TimeOfDay; 
+			return dateTime.TimeOfDay;
 		}
 
 		return null;

@@ -1,8 +1,6 @@
 ﻿using DailyReflection.Data.Databases;
 using DailyReflection.Data.Models;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DailyReflection.Services.DailyReflection;

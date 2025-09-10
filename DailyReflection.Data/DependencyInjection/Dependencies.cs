@@ -1,8 +1,5 @@
 ﻿using DailyReflection.Data.Databases;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DailyReflection.Data.DependencyInjection;
 

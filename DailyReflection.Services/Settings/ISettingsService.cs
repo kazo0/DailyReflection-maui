@@ -1,9 +1,4 @@
-﻿using DailyReflection.Core.Constants;
-using System;
-using System.Collections.Generic;
-
-
-namespace DailyReflection.Services.Settings;
+﻿namespace DailyReflection.Services.Settings;
 
 public interface ISettingsService
 {

@@ -1,10 +1,8 @@
 ﻿using DailyReflection.Core.Constants;
 using DailyReflection.Data.Models;
 using DailyReflection.Presentation.Messages;
-using DailyReflection.Services;
 using DailyReflection.Services.Notification;
 using DailyReflection.Services.Settings;
-using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Generic;

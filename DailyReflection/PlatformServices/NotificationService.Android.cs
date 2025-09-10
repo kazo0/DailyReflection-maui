@@ -1,6 +1,4 @@
 ﻿#if ANDROID
-using System;
-using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -8,6 +6,8 @@ using DailyReflection.Core.Constants;
 using DailyReflection.Droid.BroadcastReceivers;
 using DailyReflection.Droid.Permissions;
 using DailyReflection.Services.Notification;
+using System;
+using System.Threading.Tasks;
 
 
 
@@ -30,13 +30,13 @@ public class NotificationService : INotificationService
 		{
 			return false;
 		}
-		
+
 		CancelNotifications();
 		var alarmManager = (AlarmManager)Platform.AppContext.GetSystemService(Context.AlarmService);
 
 		if (Build.VERSION.SdkInt >= BuildVersionCodes.M)
 		{
-			alarmManager.SetAndAllowWhileIdle(AlarmType.RtcWakeup, GetNotificationTime(notificationTime), GetPendingIntent()); 
+			alarmManager.SetAndAllowWhileIdle(AlarmType.RtcWakeup, GetNotificationTime(notificationTime), GetPendingIntent());
 		}
 		else
 		{
