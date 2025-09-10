@@ -4,6 +4,8 @@ namespace DailyReflection
 {
 	public static class MauiProgram
 	{
+		public static MauiApp? App { get; private set; }
+
 		public static MauiApp CreateMauiApp()
 		{
 			var builder = MauiApp.CreateBuilder();
@@ -19,7 +21,7 @@ namespace DailyReflection
 			builder.Logging.AddDebug();
 #endif
 
-			return builder.Build();
+			return App = builder.Build();
 		}
 	}
 }
