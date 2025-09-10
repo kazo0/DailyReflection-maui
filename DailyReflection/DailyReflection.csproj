@@ -61,8 +61,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\..\dailyreflection\DailyReflection.Core\DailyReflection.Core.csproj" />
-	  <ProjectReference Include="..\..\..\dailyreflection\DailyReflection.Presentation\DailyReflection.Presentation.csproj" />
+	  <ProjectReference Include="..\DailyReflection.Core\DailyReflection.Core.csproj" />
+	  <ProjectReference Include="..\DailyReflection.Presentation\DailyReflection.Presentation.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
