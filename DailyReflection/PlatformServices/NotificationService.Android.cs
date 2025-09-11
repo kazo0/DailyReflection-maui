@@ -4,12 +4,9 @@ using Android.Content;
 using Android.OS;
 using DailyReflection.Core.Constants;
 using DailyReflection.Droid.BroadcastReceivers;
-using DailyReflection.Droid.Permissions;
 using DailyReflection.Services.Notification;
 using System;
 using System.Threading.Tasks;
-
-
 
 namespace DailyReflection.PlatformServices;
 
@@ -20,7 +17,7 @@ public class NotificationService : INotificationService
 	private const int AlarmId = 10000;
 
 	public async Task<bool> CanScheduleNotifications()
-		=> await Xamarin.Essentials.Permissions.CheckStatusAsync<NotificationPermission>() == PermissionStatus.Granted;
+		=> await Permissions.CheckStatusAsync<Permissions.PostNotifications>() == PermissionStatus.Granted;
 
 
 	public async Task<bool> TryScheduleDailyNotification(DateTime notificationTime, bool shouldRequestPermission = true)
@@ -46,15 +43,8 @@ public class NotificationService : INotificationService
 		return true;
 	}
 
-	private static async Task<bool> RequestNotificationPermission()
-	{
-		return await Device.InvokeOnMainThreadAsync(async () =>
-		{
-			var permission = await Xamarin.Essentials.Permissions.RequestAsync<NotificationPermission>();
-
-			return permission == PermissionStatus.Granted;
-		});
-	}
+	private static async Task<bool> RequestNotificationPermission() 
+		=> await Permissions.RequestAsync<Permissions.PostNotifications>() == PermissionStatus.Granted;
 
 	public void CancelNotifications()
 	{
