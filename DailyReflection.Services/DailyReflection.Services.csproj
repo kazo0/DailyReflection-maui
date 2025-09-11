@@ -6,10 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.7.4" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\DailyReflection.Data\DailyReflection.Data.csproj" />
   </ItemGroup>
 
