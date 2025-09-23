@@ -11,7 +11,7 @@ public partial class SobrietyTimeView : ContentPage
 	public SobrietyTimeView()
 	{
 		InitializeComponent();
-		BindingContext = Startup.ServiceProvider.GetService<SobrietyTimeViewModel>();
+		BindingContext = MauiProgram.ServiceProvider?.GetService<SobrietyTimeViewModel>();
 	}
 
 	protected override void OnAppearing()

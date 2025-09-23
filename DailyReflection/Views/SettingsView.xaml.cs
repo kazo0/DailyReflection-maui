@@ -13,7 +13,7 @@ public partial class SettingsView : ContentPage
 	public SettingsView()
 	{
 		InitializeComponent();
-		BindingContext = Startup.ServiceProvider.GetService<SettingsViewModel>();
+		BindingContext = MauiProgram.ServiceProvider?.GetService<SettingsViewModel>();
 
 		WeakReferenceMessenger.Default.Register<SettingsView, NotificationPermissionRequestMessage>(this, (r, m) =>
 		{

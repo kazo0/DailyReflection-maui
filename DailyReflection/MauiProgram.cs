@@ -8,6 +8,8 @@ public static class MauiProgram
 {
 	public static MauiApp? App { get; private set; }
 
+	public static IServiceProvider? ServiceProvider { get; private set; }
+
 	public static MauiApp CreateMauiApp()
 	{
 		var builder = MauiApp.CreateBuilder();
@@ -29,6 +31,9 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
 
-		return App = builder.Build();
+		App = builder.Build();
+		ServiceProvider = App.Services;
+
+		return App;
 	}
 }

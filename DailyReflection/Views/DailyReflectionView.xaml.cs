@@ -11,7 +11,7 @@ public partial class DailyReflectionView : ContentPage
 	public DailyReflectionView()
 	{
 		InitializeComponent();
-		BindingContext = Startup.ServiceProvider.GetService<DailyReflectionViewModel>();
+		BindingContext = MauiProgram.ServiceProvider?.GetService<DailyReflectionViewModel>();
 	}
 
 	protected override void OnAppearing()
