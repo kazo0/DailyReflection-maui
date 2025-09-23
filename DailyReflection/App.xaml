@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Application xmlns="http://schemas.microsoft.com/dotnet/maui/global"
+<Application x:Class="DailyReflection.App"
+			 xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 			 xmlns:converters="clr-namespace:DailyReflection.Converters"
-			 xmlns:xamConverters="clr-namespace:Xamarin.CommunityToolkit.Converters;assembly=Xamarin.CommunityToolkit"
-			 x:Class="DailyReflection.App">
+			 xmlns:xamConverters="clr-namespace:Xamarin.CommunityToolkit.Converters;assembly=Xamarin.CommunityToolkit">
 	<Application.Resources>
 		<Color x:Key="PrimaryColor">#1976D2</Color>
 
@@ -39,40 +39,31 @@
 		</OnPlatform>
 
 		<Style x:Key="BaseStyle"
-			   TargetType="Element"
-			   ApplyToDerivedTypes="True">
-			<Setter Property="Shell.BackgroundColor"
-					Value="{AppThemeBinding Dark={StaticResource ShellBackgroundColorDark}, Light={StaticResource ShellBackgroundColorLight}}" />
-			<Setter Property="Shell.ForegroundColor"
-					Value="{StaticResource ShellForegroundColor}"/>
-			<Setter Property="Shell.TabBarBackgroundColor"
-					Value="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}" />
-			<Setter Property="Shell.NavBarHasShadow"
-					Value="false" />
-			<Setter Property="Shell.UnselectedColor"
-					Value="Gray" />
-			<Setter Property="Shell.TabBarTitleColor"
-					Value="{StaticResource PrimaryColor}" />
+			   ApplyToDerivedTypes="True"
+			   TargetType="Element">
+			<Setter Property="Shell.BackgroundColor" Value="{AppThemeBinding Dark={StaticResource ShellBackgroundColorDark}, Light={StaticResource ShellBackgroundColorLight}}" />
+			<Setter Property="Shell.ForegroundColor" Value="{StaticResource ShellForegroundColor}" />
+			<Setter Property="Shell.TabBarBackgroundColor" Value="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}" />
+			<Setter Property="Shell.NavBarHasShadow" Value="false" />
+			<Setter Property="Shell.UnselectedColor" Value="Gray" />
+			<Setter Property="Shell.TabBarTitleColor" Value="{StaticResource PrimaryColor}" />
 		</Style>
 
-		<Style BasedOn="{StaticResource BaseStyle}"
-			   ApplyToDerivedTypes="True"
+		<Style ApplyToDerivedTypes="True"
+			   BasedOn="{StaticResource BaseStyle}"
 			   TargetType="Tab" />
 
-		<Style TargetType="Page"
-			   ApplyToDerivedTypes="True">
-			<Setter Property="BackgroundColor"
-					Value="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}" />
+		<Style ApplyToDerivedTypes="True"
+			   TargetType="Page">
+			<Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}" />
 		</Style>
 
 		<Style TargetType="Label">
-			<Setter Property="TextColor"
-					Value="{AppThemeBinding Dark={StaticResource TextPrimaryColorDark}, Light={StaticResource TextPrimaryColorLight}}" />
+			<Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource TextPrimaryColorDark}, Light={StaticResource TextPrimaryColorLight}}" />
 		</Style>
 
 		<Style TargetType="ActivityIndicator">
-			<Setter Property="Color"
-					Value="{StaticResource PrimaryColor}" />
+			<Setter Property="Color" Value="{StaticResource PrimaryColor}" />
 		</Style>
 
 		<OnPlatform x:Key="FaSolidFont"
@@ -125,6 +116,6 @@
 		<converters:InverseBoolConverter x:Key="InverseBoolConverter" />
 		<converters:HasValueConverter x:Key="HasValueConverter" />
 		<xamConverters:IntToBoolConverter x:Key="IntToBoolConverter" />
-		<xamConverters:IsNotNullOrEmptyConverter  x:Key="NullToBoolConverter" />
+		<xamConverters:IsNotNullOrEmptyConverter x:Key="NullToBoolConverter" />
 	</Application.Resources>
 </Application>
