@@ -12,11 +12,11 @@
 
 		<OutputType>Exe</OutputType>
 		<RootNamespace>DailyReflection</RootNamespace>
-		<UseMauiEssentials>true</UseMauiEssentials>
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<!--<MauiEnableXamlCBindingWithSourceCompilation>true</MauiEnableXamlCBindingWithSourceCompilation>-->
+		<UseMaui>true</UseMaui>
+		<MauiEnableXamlCBindingWithSourceCompilation>true</MauiEnableXamlCBindingWithSourceCompilation>
 		<!-- Display name -->
 		<ApplicationTitle>DailyReflection</ApplicationTitle>
 
@@ -56,7 +56,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<EmbeddedResource Include="appsettings.json" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="12.2.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="10.0.0-rc.1.25451.107" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.0-rc.1.25451.107" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0-rc.1.25451.107" />
 		<PackageReference Include="Microsoft.Maui.Essentials" Version="$(MauiVersion)" />
