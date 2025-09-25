@@ -7,7 +7,7 @@
 
   <ItemGroup>
     <None Remove="dailyreflections.db" />
-    <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
   </ItemGroup>
 
   <ItemGroup>
