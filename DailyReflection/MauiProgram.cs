@@ -3,6 +3,7 @@ using DailyReflection.DependencyInjection;
 using DailyReflection.Presentation.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Sharpnado.Tabs;
 using System.Reflection;
 
 namespace DailyReflection;
@@ -25,6 +26,7 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
+			.UseSharpnadoTabs(loggerEnable: false)
 			.UseMauiCommunityToolkit()
 			.ConfigureFonts(fonts =>
 			{

@@ -1,21 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Shell x:Class="DailyReflection.Views.AppShell"
-	   xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-	   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	   xmlns:views="clr-namespace:DailyReflection.Views"
-	   Visual="Material">
-	<TabBar>
-		<Tab Title="Reflection"
-			 Icon="{StaticResource ReflectionIcon}">
-			<ShellContent ContentTemplate="{DataTemplate views:DailyReflectionView}" />
-		</Tab>
-		<Tab Title="Sober Time"
-			 Icon="{StaticResource ClockIcon}">
-			<ShellContent ContentTemplate="{DataTemplate views:SobrietyTimeView}" />
-		</Tab>
-		<Tab Title="Settings"
-			 Icon="{StaticResource SettingsIcon}">
-			<ShellContent ContentTemplate="{DataTemplate views:SettingsView}" />
-		</Tab>
-	</TabBar>
-</Shell>
+<ContentPage x:Class="DailyReflection.Views.AppShell"
+			 xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:views="clr-namespace:DailyReflection.Views"
+			 xmlns:tabs="http://sharpnado.com"
+			 xmlns:vm="clr-namespace:DailyReflection.Presentation.ViewModels;assembly=DailyReflection.Presentation"
+			 Visual="Material"
+			 x:DataType="vm:ShellViewModel">
+	<Grid RowDefinitions="*, Auto">
+		<tabs:ViewSwitcher x:Name="Switcher"
+						   Margin="0"
+						   Animate="True">
+			<tabs:LazyView x:TypeArguments="views:DailyReflectionView"
+						   AccentColor="{StaticResource Primary}"
+						   Animate="True"
+						   BindingContext="{Binding DailyReflectionViewModel}" />
+			<tabs:LazyView x:TypeArguments="views:SobrietyTimeView"
+						   AccentColor="{StaticResource Primary}"
+						   Animate="True"
+						   BindingContext="{Binding SobrietyTimeViewModel}" />
+			<tabs:LazyView x:TypeArguments="views:SettingsView"
+						   AccentColor="{StaticResource Primary}"
+						   Animate="True"
+						   BindingContext="{Binding SettingsViewModel}" />
+		</tabs:ViewSwitcher>
+		<tabs:TabHostView HeightRequest="60"
+						  Grid.Row="1"
+						  Padding="20,0"
+						  HorizontalOptions="Center"
+						  BackgroundColor="{StaticResource Gray900}"
+						  IsSegmented="False"
+						  Orientation="Horizontal"
+						  SelectedIndex="{Binding Source={x:Reference Switcher}, Path=SelectedIndex, Mode=TwoWay}"
+						  TabType="Fixed">
+			<tabs:BottomTabItem Style="{StaticResource BottomTab}"
+								Label="Reflection" />
+			<tabs:BottomTabItem Style="{StaticResource BottomTab}"
+								Label="Sober Time" />
+			<tabs:BottomTabItem Style="{StaticResource BottomTab}"
+								Label="Settings" />
+		</tabs:TabHostView>
+	</Grid>
+</ContentPage>

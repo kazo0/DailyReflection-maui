@@ -6,7 +6,7 @@
 namespace DailyReflection.Views;
 
 [XamlCompilation(XamlCompilationOptions.Compile)]
-public partial class DailyReflectionView : ContentPage
+public partial class DailyReflectionView : ContentView
 {
 	public DailyReflectionView()
 	{
