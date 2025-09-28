@@ -1,9 +1,10 @@
-﻿using DailyReflection.Core.Constants;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Messaging;
+using DailyReflection.Core.Constants;
 using DailyReflection.Data.Models;
 using DailyReflection.Presentation.Messages;
 using DailyReflection.Services.Notification;
 using DailyReflection.Services.Settings;
-using Microsoft.Toolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,58 +14,22 @@ using System.Threading.Tasks;
 
 namespace DailyReflection.Presentation.ViewModels;
 
-public class SettingsViewModel : ViewModelBase
+public partial class SettingsViewModel : ViewModelBase
 {
 	private readonly INotificationService _notificationService;
 	private readonly ISettingsService _settingsService;
+
+	[ObservableProperty]
 	private bool _notificationsEnabled;
+
+	[ObservableProperty]
 	private DateTime _soberDate;
+
+	[ObservableProperty]
 	private DateTime _notificationTime;
 
-	public bool NotificationsEnabled
-	{
-		get => _notificationsEnabled;
-		set
-		{
-			_settingsService.Set(PreferenceConstants.NotificationsEnabled, value);
-			SetProperty(ref _notificationsEnabled, value);
-		}
-	}
-
-	public DateTime NotificationTime
-	{
-		get => _notificationTime;
-		set
-		{
-			_settingsService.Set(PreferenceConstants.NotificationTime, value);
-			SetProperty(ref _notificationTime, value);
-		}
-	}
-
-	public DateTime SoberDate
-	{
-		get => _soberDate;
-		set
-		{
-			_settingsService.Set(PreferenceConstants.SoberDate, value);
-			SetProperty(ref _soberDate, value);
-			OnSoberDateChanged();
-		}
-	}
-
+	[ObservableProperty]
 	private SoberTimeDisplayPreference _soberTimeDisplayPreference;
-
-	public SoberTimeDisplayPreference SoberTimeDisplayPreference
-	{
-		get => _soberTimeDisplayPreference;
-		set
-		{
-			_settingsService.Set(PreferenceConstants.SoberTimeDisplay, (int)value);
-			SetProperty(ref _soberTimeDisplayPreference, value);
-			OnSoberTimeDisplayPreferenceChanged();
-
-		}
-	}
 
 	public DateTime MaxDate => DateTime.Today;
 
@@ -101,7 +66,7 @@ public class SettingsViewModel : ViewModelBase
 	{
 		if (NotificationsEnabled)
 		{
-			await _notificationService.TryScheduleDailyNotification(_notificationTime);
+			await _notificationService.TryScheduleDailyNotification(NotificationTime);
 		}
 		else
 		{
@@ -109,13 +74,23 @@ public class SettingsViewModel : ViewModelBase
 		}
 	}
 
-	private void OnSoberDateChanged()
+	partial void OnNotificationsEnabledChanged(bool value)
 	{
-		WeakReferenceMessenger.Default.Send(new SoberDateChangedMessage(SoberDate));
+		Task.Run(UpdateNotifications);
 	}
 
-	private void OnSoberTimeDisplayPreferenceChanged()
+	partial void OnNotificationTimeChanged(DateTime value)
 	{
-		WeakReferenceMessenger.Default.Send(new SoberTimeDisplayPreferenceChangedMessage(SoberTimeDisplayPreference));
+		Task.Run(UpdateNotifications);
+	}
+
+	partial void OnSoberDateChanged(DateTime oldValue, DateTime newValue)
+	{
+		WeakReferenceMessenger.Default.Send(new SoberDateChangedMessage(newValue));
+	}
+
+	partial void OnSoberTimeDisplayPreferenceChanged(SoberTimeDisplayPreference oldValue, SoberTimeDisplayPreference newValue)
+	{
+		WeakReferenceMessenger.Default.Send(new SoberTimeDisplayPreferenceChangedMessage(newValue));
 	}
 }

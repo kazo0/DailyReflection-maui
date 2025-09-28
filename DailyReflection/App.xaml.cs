@@ -16,34 +16,37 @@ public partial class App : Application
 	{
 		InitializeComponent();
 
-      Microsoft.Maui.Handlers.DatePickerHandler.Mapper.AppendToMapping("dfg", (handler, view) =>
-        {
+		Microsoft.Maui.Handlers.DatePickerHandler.Mapper.AppendToMapping("dfg", (handler, view) =>
+			{
 #if IOS
-			handler.PlatformView.Layer.BorderWidth = 0;
-			handler.PlatformView.BorderStyle = UITextBorderStyle.None;
-            var picker = (handler.PlatformView.InputView as UIDatePicker);
-            picker.PreferredDatePickerStyle = UIDatePickerStyle.Inline;
-            picker.Mode = UIDatePickerMode.DateAndTime;
+				handler.PlatformView.Layer.BorderWidth = 0;
+				handler.PlatformView.BorderStyle = UITextBorderStyle.None;
+				var picker = (handler.PlatformView.InputView as UIDatePicker);
+				picker.PreferredDatePickerStyle = UIDatePickerStyle.Inline;
+				picker.Mode = UIDatePickerMode.DateAndTime;
 #elif ANDROID
-			handler.PlatformView.Background = null;	
+				handler.PlatformView.Background = null;
 #endif
-        });
+			});
 
-		    Microsoft.Maui.Handlers.TimePickerHandler.Mapper.AppendToMapping("timepicker", (handler, view) =>
-        {
+		Microsoft.Maui.Handlers.TimePickerHandler.Mapper.AppendToMapping("timepicker", (handler, view) =>
+		{
 #if IOS
 			handler.PlatformView.Layer.BorderWidth = 0;
 			handler.PlatformView.BorderStyle = UITextBorderStyle.None;
-            var picker = (handler.PlatformView.InputView as UIDatePicker);
-            picker.PreferredDatePickerStyle = UIDatePickerStyle.Wheels;
+			var picker = (handler.PlatformView.InputView as UIDatePicker);
+			picker.PreferredDatePickerStyle = UIDatePickerStyle.Wheels;
 #elif ANDROID
-			handler.PlatformView.Background = null;	
+			handler.PlatformView.Background = null;
 #endif
-        });
+		});
 
 		VersionTracking.Track();
+	}
 
-		MainPage = MauiProgram.ServiceProvider?.GetService<AppShell>();
+	protected override Window CreateWindow(IActivationState? activationState)
+	{
+		return new Window(MauiProgram.ServiceProvider?.GetService<AppShell>());
 	}
 
 	private static async Task MigrateSettingsIfNeeded()
