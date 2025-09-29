@@ -11,13 +11,13 @@ public partial class DailyReflectionView : ContentView
 	public DailyReflectionView()
 	{
 		InitializeComponent();
-		BindingContext = MauiProgram.ServiceProvider?.GetService<DailyReflectionViewModel>();
+		//BindingContext = MauiProgram.ServiceProvider?.GetService<DailyReflectionViewModel>();
+		Loaded += DailyReflectionView_Loaded;
+
 	}
 
-	protected override void OnAppearing()
+	private void DailyReflectionView_Loaded(object? sender, EventArgs e)
 	{
-		base.OnAppearing();
-
 		if (BindingContext is DailyReflectionViewModel vm)
 		{
 			MainThread.BeginInvokeOnMainThread(async () => await vm.Init());

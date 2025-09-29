@@ -1,5 +1,5 @@
-﻿using DailyReflection.Data.Models;
-using Microsoft.Toolkit.Mvvm.Messaging.Messages;
+﻿using CommunityToolkit.Mvvm.Messaging.Messages;
+using DailyReflection.Data.Models;
 
 namespace DailyReflection.Presentation.Messages;
 

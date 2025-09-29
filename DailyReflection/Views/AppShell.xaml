@@ -10,35 +10,50 @@
 	<Grid RowDefinitions="*, Auto">
 		<tabs:ViewSwitcher x:Name="Switcher"
 						   Margin="0"
+						   SelectedIndex="{Binding SelectedIndex, Source={x:Reference TabHost}}"
 						   Animate="True">
-			<tabs:LazyView x:TypeArguments="views:DailyReflectionView"
+			<tabs:DelayedView x:TypeArguments="views:DailyReflectionView"
 						   AccentColor="{StaticResource Primary}"
+						   UseActivityIndicator="True"
 						   Animate="True"
 						   BindingContext="{Binding DailyReflectionViewModel}" />
-			<tabs:LazyView x:TypeArguments="views:SobrietyTimeView"
+			<tabs:DelayedView x:TypeArguments="views:SobrietyTimeView"
 						   AccentColor="{StaticResource Primary}"
+						   UseActivityIndicator="True"
 						   Animate="True"
 						   BindingContext="{Binding SobrietyTimeViewModel}" />
-			<tabs:LazyView x:TypeArguments="views:SettingsView"
+			<tabs:DelayedView x:TypeArguments="views:SettingsView"
 						   AccentColor="{StaticResource Primary}"
+						   UseActivityIndicator="True"
 						   Animate="True"
 						   BindingContext="{Binding SettingsViewModel}" />
 		</tabs:ViewSwitcher>
 		<tabs:TabHostView HeightRequest="60"
+						  x:Name="TabHost"
 						  Grid.Row="1"
-						  Padding="20,0"
-						  HorizontalOptions="Center"
-						  BackgroundColor="{StaticResource Gray900}"
+						  BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}"
 						  IsSegmented="False"
 						  Orientation="Horizontal"
-						  SelectedIndex="{Binding Source={x:Reference Switcher}, Path=SelectedIndex, Mode=TwoWay}"
+						  SelectedIndex="0"
 						  TabType="Fixed">
-			<tabs:BottomTabItem Style="{StaticResource BottomTab}"
-								Label="Reflection" />
-			<tabs:BottomTabItem Style="{StaticResource BottomTab}"
-								Label="Sober Time" />
-			<tabs:BottomTabItem Style="{StaticResource BottomTab}"
-								Label="Settings" />
+			<tabs:MaterialUnderlinedTabItem 
+								Label="Reflection">
+				<tabs:MaterialUnderlinedTabItem.IconImageSource>
+					<FontImageSource FontFamily="{StaticResource FaSolidFont}" Glyph="&#xf02d;" Size="28" />
+				</tabs:MaterialUnderlinedTabItem.IconImageSource>
+								</tabs:MaterialUnderlinedTabItem>
+			<tabs:MaterialUnderlinedTabItem 
+								Label="Sober Time">
+				<tabs:MaterialUnderlinedTabItem.IconImageSource>
+					<FontImageSource FontFamily="{StaticResource FaRegularFont}" Glyph="&#xf017;" Size="28" />
+				</tabs:MaterialUnderlinedTabItem.IconImageSource>
+			</tabs:MaterialUnderlinedTabItem>
+			<tabs:MaterialUnderlinedTabItem 
+								Label="Settings">
+				<tabs:MaterialUnderlinedTabItem.IconImageSource>
+					<FontImageSource FontFamily="{StaticResource FaSolidFont}" Glyph="&#xf013;" Size="28" />
+				</tabs:MaterialUnderlinedTabItem.IconImageSource>
+			</tabs:MaterialUnderlinedTabItem>
 		</tabs:TabHostView>
 	</Grid>
 </ContentPage>

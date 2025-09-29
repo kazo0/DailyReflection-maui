@@ -8,13 +8,13 @@ namespace DailyReflection.Presentation.ViewModels;
 public partial class ShellViewModel : ViewModelBase
 {
 	[ObservableProperty]
-	private readonly DailyReflectionViewModel _dailyReflectionViewModel;
+	private DailyReflectionViewModel _dailyReflectionViewModel;
 
 	[ObservableProperty]
-	private readonly SobrietyTimeViewModel _sobrietyTimeViewModel;
+	private SobrietyTimeViewModel _sobrietyTimeViewModel;
 
 	[ObservableProperty]
-	private readonly SettingsViewModel _settingsViewModel;
+	private SettingsViewModel _settingsViewModel;
 
 	public ShellViewModel(DailyReflectionViewModel dailyReflectionViewModel,
 						   SobrietyTimeViewModel sobrietyTimeViewModel,

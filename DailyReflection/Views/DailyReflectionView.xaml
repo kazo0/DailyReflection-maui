@@ -7,7 +7,6 @@
 			 xmlns:converters="clr-namespace:DailyReflection.Converters"
 			 xmlns:vm="clr-namespace:DailyReflection.Presentation.ViewModels;assembly=DailyReflection.Presentation"
 			 xmlns:xct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-			 Title="{Binding Date, StringFormat='{0:MMMM d}'}"
 			 x:DataType="vm:DailyReflectionViewModel"
 			 AutomationId="{x:Static constants:AutomationConstants.Daily_Reflection}"
 			 Visual="Material">
@@ -15,7 +14,7 @@
 		<converters:DateChangedEventArgsConverter x:Key="DateChangedEventArgsConverter" />
 		<converters:AllFalseMultiConverter x:Key="AllFalseConverter" />
 	</ContentView.Resources>
-	<ContentView.ToolbarItems>
+	<!-- <ContentView.ToolbarItems>
 		<ToolbarItem AutomationId="{x:Static constants:AutomationConstants.DR_Change_Date}"
 					 Clicked="ToolbarItem_Clicked"
 					 IconImageSource="{StaticResource CalendarIcon}"
@@ -25,7 +24,7 @@
 					 Command="{Binding ShareCommand}"
 					 Order="Secondary"
 					 Text="Share" />
-	</ContentView.ToolbarItems>
+	</ContentView.ToolbarItems> -->
 	<ScrollView>
 		<Grid>
 			<StackLayout Margin="20">
@@ -33,7 +32,7 @@
 					<MultiBinding Converter="{StaticResource AllFalseConverter}"
 								  FallbackValue="False">
 						<Binding Path="HasError" />
-						<Binding Path="GetReflectionCommand.IsRunning" />
+						<Binding Path="GetDailyReflectionCommand.IsRunning" />
 					</MultiBinding>
 				</StackLayout.IsVisible>
 				<!--  Empty label needs to be here, first element with TextType="Html" doesn't get rendered on first load for some reason  -->
@@ -79,13 +78,13 @@
 					   VerticalOptions="CenterAndExpand" />
 			</Grid>
 			<ActivityIndicator HorizontalOptions="Center"
-							   IsRunning="{Binding GetReflectionCommand.IsRunning, Mode=OneWay}"
-							   IsVisible="{Binding GetReflectionCommand.IsRunning, Mode=OneWay}"
+							   IsRunning="{Binding GetDailyReflectionCommand.IsRunning, Mode=OneWay}"
+							   IsVisible="{Binding GetDailyReflectionCommand.IsRunning, Mode=OneWay}"
 							   VerticalOptions="Center" />
 			<controls:CustomDatePicker x:Name="DatePicker"
 									   IsVisible="False">
 				<controls:CustomDatePicker.Behaviors>
-					<xct:EventToCommandBehavior Command="{Binding GetReflectionCommand}"
+					<xct:EventToCommandBehavior Command="{Binding GetDailyReflectionCommand}"
 												EventArgsConverter="{StaticResource DateChangedEventArgsConverter}"
 												EventName="DateSelected" />
 				</controls:CustomDatePicker.Behaviors>

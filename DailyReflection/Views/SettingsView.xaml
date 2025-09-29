@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="DailyReflection.Views.SettingsView"
+<ContentView x:Class="DailyReflection.Views.SettingsView"
 			 xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 			 xmlns:constants="clr-namespace:DailyReflection.Core.Constants;assembly=DailyReflection.Core"
@@ -7,15 +7,14 @@
 			 xmlns:converters="clr-namespace:DailyReflection.Converters"
 			 xmlns:vm="clr-namespace:DailyReflection.Presentation.ViewModels;assembly=DailyReflection.Presentation"
 			 xmlns:xct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-			 Title="Settings"
 			 x:DataType="vm:SettingsViewModel"
 			 AutomationId="{x:Static constants:AutomationConstants.Settings}"
 			 Visual="Material">
-	<ContentPage.Resources>
+	<ContentView.Resources>
 		<converters:DateTimeToTimeSpanConverter x:Key="DateTimeToTimeSpan" />
 		<converters:TimePickerLabelEnabledConverter x:Key="TimePickerLabelEnabled" />
 		<converters:SoberTimeDisplayEnumConverter x:Key="SoberTimeDisplayEnumConverter" />
-	</ContentPage.Resources>
+	</ContentView.Resources>
 	<ScrollView>
 		<Grid>
 			<TableView Intent="Settings">
@@ -64,4 +63,4 @@
 					SelectedItem="{Binding SoberTimeDisplayPreference, Mode=TwoWay}" />
 		</Grid>
 	</ScrollView>
-</ContentPage>
+</ContentView>
