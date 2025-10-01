@@ -6,18 +6,18 @@
 namespace DailyReflection.Views;
 
 [XamlCompilation(XamlCompilationOptions.Compile)]
-public partial class DailyReflectionView : ContentView
+public partial class DailyReflectionView : ContentPage
 {
 	public DailyReflectionView()
 	{
 		InitializeComponent();
-		//BindingContext = MauiProgram.ServiceProvider?.GetService<DailyReflectionViewModel>();
-		Loaded += DailyReflectionView_Loaded;
-
+		BindingContext = MauiProgram.ServiceProvider?.GetService<DailyReflectionViewModel>();
 	}
 
-	private void DailyReflectionView_Loaded(object? sender, EventArgs e)
+	protected override void OnAppearing()
 	{
+		base.OnAppearing();
+
 		if (BindingContext is DailyReflectionViewModel vm)
 		{
 			MainThread.BeginInvokeOnMainThread(async () => await vm.Init());

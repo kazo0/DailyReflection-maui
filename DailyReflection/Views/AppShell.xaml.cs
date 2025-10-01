@@ -1,14 +1,13 @@
-﻿using DailyReflection.Presentation.ViewModels;
+﻿
+
 
 namespace DailyReflection.Views;
 
 [XamlCompilation(XamlCompilationOptions.Compile)]
-public partial class AppShell : ContentPage
+public partial class AppShell : Shell
 {
-	public AppShell(ShellViewModel vm)
+	public AppShell()
 	{
 		InitializeComponent();
-
-		BindingContext = vm;
 	}
 }

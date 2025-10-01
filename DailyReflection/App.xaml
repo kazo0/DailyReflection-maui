@@ -28,12 +28,12 @@
 			</OnPlatform>
 
 			<x:String x:Key="Calendar">&#xf073;</x:String>
-			
-			<!-- <FontImageSource x:Key="ReflectionIcon" FontFamily="{StaticResource FaSolidFont}" Glyph="&#xf02d;" Size="22" />
-			<FontImageSource x:Key="SettingsIcon" FontFamily="{StaticResource FaSolidFont}" Glyph="&#xf013;" Size="22" />
-			<FontImageSource x:Key="ShareIcon" FontFamily="{StaticResource FaSolidFont}" Glyph="&#xf14d;" Size="22" />
-			<FontImageSource x:Key="ClockIcon" FontFamily="{StaticResource FaRegularFont}" Glyph="&#xf017;" Size="22" />
-			<FontImageSource x:Key="CalendarIcon" FontFamily="{StaticResource FaRegularFont}" Glyph="{StaticResource Calendar}" Size="22" /> -->
+
+			<FontImage x:Key="ReflectionIcon" FontFamily="{StaticResource FaSolidFont}" Glyph="&#xf02d;" Size="22" />
+			<FontImage x:Key="SettingsIcon" FontFamily="{StaticResource FaSolidFont}" Glyph="&#xf013;" Size="22" />
+			<FontImage x:Key="ShareIcon" FontFamily="{StaticResource FaSolidFont}" Glyph="&#xf14d;" Size="22" />
+			<FontImage x:Key="ClockIcon" FontFamily="{StaticResource FaRegularFont}" Glyph="&#xf017;" Size="22" />
+			<FontImage x:Key="CalendarIcon" FontFamily="{StaticResource FaRegularFont}" Glyph="{StaticResource Calendar}" Size="22" />
 
 			<converters:InverseBoolConverter x:Key="InverseBoolConverter" />
 			<converters:HasValueConverter x:Key="HasValueConverter" />

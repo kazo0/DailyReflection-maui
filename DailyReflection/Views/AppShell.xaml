@@ -1,59 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="DailyReflection.Views.AppShell"
-			 xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-			 xmlns:views="clr-namespace:DailyReflection.Views"
-			 xmlns:tabs="http://sharpnado.com"
-			 xmlns:vm="clr-namespace:DailyReflection.Presentation.ViewModels;assembly=DailyReflection.Presentation"
-			 Visual="Material"
-			 x:DataType="vm:ShellViewModel">
-	<Grid RowDefinitions="*, Auto">
-		<tabs:ViewSwitcher x:Name="Switcher"
-						   Margin="0"
-						   SelectedIndex="{Binding SelectedIndex, Source={x:Reference TabHost}}"
-						   Animate="True">
-			<tabs:DelayedView x:TypeArguments="views:DailyReflectionView"
-						   AccentColor="{StaticResource Primary}"
-						   UseActivityIndicator="True"
-						   Animate="True"
-						   BindingContext="{Binding DailyReflectionViewModel}" />
-			<tabs:DelayedView x:TypeArguments="views:SobrietyTimeView"
-						   AccentColor="{StaticResource Primary}"
-						   UseActivityIndicator="True"
-						   Animate="True"
-						   BindingContext="{Binding SobrietyTimeViewModel}" />
-			<tabs:DelayedView x:TypeArguments="views:SettingsView"
-						   AccentColor="{StaticResource Primary}"
-						   UseActivityIndicator="True"
-						   Animate="True"
-						   BindingContext="{Binding SettingsViewModel}" />
-		</tabs:ViewSwitcher>
-		<tabs:TabHostView HeightRequest="60"
-						  x:Name="TabHost"
-						  Grid.Row="1"
-						  BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}"
-						  IsSegmented="False"
-						  Orientation="Horizontal"
-						  SelectedIndex="0"
-						  TabType="Fixed">
-			<tabs:MaterialUnderlinedTabItem 
-								Label="Reflection">
-				<tabs:MaterialUnderlinedTabItem.IconImageSource>
-					<FontImageSource FontFamily="{StaticResource FaSolidFont}" Glyph="&#xf02d;" Size="28" />
-				</tabs:MaterialUnderlinedTabItem.IconImageSource>
-								</tabs:MaterialUnderlinedTabItem>
-			<tabs:MaterialUnderlinedTabItem 
-								Label="Sober Time">
-				<tabs:MaterialUnderlinedTabItem.IconImageSource>
-					<FontImageSource FontFamily="{StaticResource FaRegularFont}" Glyph="&#xf017;" Size="28" />
-				</tabs:MaterialUnderlinedTabItem.IconImageSource>
-			</tabs:MaterialUnderlinedTabItem>
-			<tabs:MaterialUnderlinedTabItem 
-								Label="Settings">
-				<tabs:MaterialUnderlinedTabItem.IconImageSource>
-					<FontImageSource FontFamily="{StaticResource FaSolidFont}" Glyph="&#xf013;" Size="28" />
-				</tabs:MaterialUnderlinedTabItem.IconImageSource>
-			</tabs:MaterialUnderlinedTabItem>
-		</tabs:TabHostView>
-	</Grid>
-</ContentPage>
+<Shell x:Class="DailyReflection.Views.AppShell"
+	   xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	   xmlns:views="clr-namespace:DailyReflection.Views"
+	   Visual="Material">
+	<TabBar>
+		<Tab Title="Reflection"
+			 Icon="{StaticResource ReflectionIcon}">
+			<ShellContent ContentTemplate="{DataTemplate views:DailyReflectionView}" />
+		</Tab>
+		<Tab Title="Sober Time"
+			 Icon="{StaticResource ClockIcon}">
+			<ShellContent ContentTemplate="{DataTemplate views:SobrietyTimeView}" />
+		</Tab>
+		<Tab Title="Settings"
+			 Icon="{StaticResource SettingsIcon}">
+			<ShellContent ContentTemplate="{DataTemplate views:SettingsView}" />
+		</Tab>
+	</TabBar>
+</Shell>

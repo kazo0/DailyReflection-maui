@@ -1,14 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentView x:Class="DailyReflection.Views.SobrietyTimeView"
+<ContentPage x:Class="DailyReflection.Views.SobrietyTimeView"
 			 xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 			 xmlns:constants="clr-namespace:DailyReflection.Core.Constants;assembly=DailyReflection.Core"
 			 xmlns:converter="clr-namespace:DailyReflection.Converters"
 			 xmlns:models="clr-namespace:DailyReflection.Data.Models;assembly=DailyReflection.Data"
 			 xmlns:vm="clr-namespace:DailyReflection.Presentation.ViewModels;assembly=DailyReflection.Presentation"
+			 Title="Sober Time"
 			 x:DataType="vm:SobrietyTimeViewModel"
 			 AutomationId="{x:Static constants:AutomationConstants.Sobriety_Time}">
-	<ContentView.Resources>
+	<ContentPage.Resources>
 		<converter:PluralityConverter x:Key="YearsPluralityConverter"
 									  PluralValue="Years"
 									  SingularValue="Year" />
@@ -22,7 +23,7 @@
 													  DisplayPreference="{x:Static models:SoberTimeDisplayPreference.DaysMonthsYears}" />
 		<converter:IsDisplayPreferenceToBoolConverter x:Key="IsDaysOnlyDisplayPreferenceConverter"
 													  DisplayPreference="{x:Static models:SoberTimeDisplayPreference.DaysOnly}" />
-	</ContentView.Resources>
+	</ContentPage.Resources>
 	<ScrollView>
 		<Grid RowDefinitions="20, Auto, *, Auto, Auto, *, Auto">
 			<Grid Grid.Row="1"
@@ -96,4 +97,4 @@
 				   Text="One day at a time" />
 		</Grid>
 	</ScrollView>
-</ContentView>
+</ContentPage>

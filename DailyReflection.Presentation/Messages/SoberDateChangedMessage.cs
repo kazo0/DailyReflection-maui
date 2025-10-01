@@ -1,4 +1,4 @@
-﻿using CommunityToolkit.Mvvm.Messaging.Messages;
+﻿using Microsoft.Toolkit.Mvvm.Messaging.Messages;
 using System;
 
 namespace DailyReflection.Presentation.Messages;
