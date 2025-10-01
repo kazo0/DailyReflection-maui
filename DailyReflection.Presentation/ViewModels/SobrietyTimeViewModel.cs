@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Messaging;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Messaging;
 using DailyReflection.Core.Constants;
 using DailyReflection.Data.Models;
 using DailyReflection.Presentation.Messages;
@@ -10,36 +11,21 @@ using System;
 
 namespace DailyReflection.Presentation.ViewModels;
 
-public class SobrietyTimeViewModel : ViewModelBase, IRecipient<SoberDateChangedMessage>, IRecipient<SoberTimeDisplayPreferenceChangedMessage>
+public partial class SobrietyTimeViewModel : ViewModelBase, IRecipient<SoberDateChangedMessage>, IRecipient<SoberTimeDisplayPreferenceChangedMessage>
 {
+	[ObservableProperty]
 	private Period _soberPeriod;
+
+	[ObservableProperty]
 	private int _totalDaysSober;
+
+	[ObservableProperty]
 	private DateTime? _soberDate;
+
+	[ObservableProperty]
 	private SoberTimeDisplayPreference _displayPreference;
+
 	private readonly ISettingsService _settingsService;
-
-	public int TotalDaysSober
-	{
-		get => _totalDaysSober;
-		set => SetProperty(ref _totalDaysSober, value);
-	}
-	public Period SoberPeriod
-	{
-		get => _soberPeriod;
-		set => SetProperty(ref _soberPeriod, value);
-	}
-
-	public DateTime? SoberDate
-	{
-		get => _soberDate;
-		set => SetProperty(ref _soberDate, value);
-	}
-
-	public SoberTimeDisplayPreference DisplayPreference
-	{
-		get => _displayPreference;
-		set => SetProperty(ref _displayPreference, value);
-	}
 
 	public SobrietyTimeViewModel(ISettingsService settingsService)
 	{
