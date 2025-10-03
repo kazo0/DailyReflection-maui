@@ -1,7 +1,6 @@
-﻿using DailyReflection.Presentation.Messages;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using DailyReflection.Presentation.Messages;
 using DailyReflection.Presentation.ViewModels;
-using Microsoft.Toolkit.Mvvm.Messaging;
-
 
 
 
