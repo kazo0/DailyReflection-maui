@@ -29,7 +29,7 @@
 			<Grid Grid.Row="1"
 				  IsVisible="{Binding SoberDate, Converter={StaticResource NullToBoolConverter}}"
 				  RowDefinitions="Auto, Auto">
-				<Label FontFamily="{StaticResource FaRegularFont}"
+				<Label FontFamily="FaRegularFont"
 					   FontSize="Title"
 					   HorizontalOptions="Center"
 					   Text="{StaticResource Calendar}" />
