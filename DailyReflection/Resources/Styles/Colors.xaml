@@ -4,6 +4,9 @@
 
 	<!--  Note: For Android please see also Platforms\Android\Resources\values\colors.xml  -->
 
+	<Color x:Key="TextPrimaryColorDark">#FFFFFF</Color>
+	<Color x:Key="TextPrimaryColorLight">#323130</Color>
+	
 	<Color x:Key="Primary">#1976D2</Color>
 	<Color x:Key="PrimaryDark">#ac99ea</Color>
 	<Color x:Key="PrimaryDarkText">#242424</Color>
