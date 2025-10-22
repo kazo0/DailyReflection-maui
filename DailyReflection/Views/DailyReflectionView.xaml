@@ -10,7 +10,8 @@
 			 Title="{Binding Date, StringFormat='{0:MMMM d}'}"
 			 x:DataType="vm:DailyReflectionViewModel"
 			 AutomationId="{x:Static constants:AutomationConstants.Daily_Reflection}"
-			 Visual="Material">
+			 Visual="Material"
+			 x:Name="ReflectionPage">
 	<ContentPage.Resources>
 		<converters:DateChangedEventArgsConverter x:Key="DateChangedEventArgsConverter" />
 		<converters:AllFalseMultiConverter x:Key="AllFalseConverter" />
@@ -33,26 +34,15 @@
 					<MultiBinding Converter="{StaticResource AllFalseConverter}"
 								  FallbackValue="False">
 						<Binding Path="HasError" />
-						<Binding Path="GetReflectionCommand.IsRunning" />
+						<Binding Path="GetDailyReflectionCommand.IsRunning" />
 					</MultiBinding>
 				</StackLayout.IsVisible>
-				<!--  Empty label needs to be here, first element with TextType="Html" doesn't get rendered on first load for some reason  -->
-				<Label HeightRequest="0"
-					   TextType="Html">
-					<Label.IsVisible>
-						<OnPlatform x:TypeArguments="x:Boolean">
-							<On Platform="iOS"
-								Value="True" />
-							<On Platform="Android"
-								Value="False" />
-						</OnPlatform>
-					</Label.IsVisible>
-				</Label>
+				<Button Text="CLICK ME" Command="{Binding GetDailyReflectionCommand}" />
 				<Label AutomationId="{x:Static constants:AutomationConstants.DR_Reflection_Title}"
 					   FontSize="Title"
 					   HorizontalTextAlignment="Center"
 					   Text="{Binding DailyReflection.Title}"
-					   TextType="Html" />
+					    />
 				<Label Margin="0,20,0,0"
 					   AutomationId="{x:Static constants:AutomationConstants.DR_Reflection_Quote}"
 					   FontAttributes="Italic"
@@ -79,8 +69,8 @@
 					   VerticalOptions="CenterAndExpand" />
 			</Grid>
 			<ActivityIndicator HorizontalOptions="Center"
-							   IsRunning="{Binding GetReflectionCommand.IsRunning, Mode=OneWay}"
-							   IsVisible="{Binding GetReflectionCommand.IsRunning, Mode=OneWay}"
+							   IsRunning="{Binding GetDailyReflectionCommand.IsRunning, Mode=OneWay}"
+							   IsVisible="{Binding GetDailyReflectionCommand.IsRunning, Mode=OneWay}"
 							   VerticalOptions="Center" />
 			<controls:CustomDatePicker x:Name="DatePicker"
 									   IsVisible="False">
