@@ -39,7 +39,7 @@ public partial class DailyReflectionViewModel : ViewModelBase
 		if (!_initialized)
 		{
 			_initialized = true;
-			await GetDailyReflectionCommand.ExecuteAsync(DateTime.Today);
+			await GetDailyReflection(DateTime.Today);
 		}
 	}
 

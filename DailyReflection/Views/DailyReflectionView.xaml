@@ -85,8 +85,8 @@
 			<controls:CustomDatePicker x:Name="DatePicker"
 									   IsVisible="False">
 				<controls:CustomDatePicker.Behaviors>
-					<xct:EventToCommandBehavior Command="{Binding GetReflectionCommand}"
-												EventArgsConverter="{StaticResource DateChangedEventArgsConverter}"
+					<xct:EventToCommandBehavior Command="{Binding Source={x:Reference ReflectionPage}, Path=BindingContext.GetDailyReflectionCommand, x:DataType=ContentPage}"
+					                            EventArgsConverter="{StaticResource DateChangedEventArgsConverter}"
 												EventName="DateSelected" />
 				</controls:CustomDatePicker.Behaviors>
 			</controls:CustomDatePicker>
