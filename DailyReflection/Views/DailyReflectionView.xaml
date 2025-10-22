@@ -37,7 +37,6 @@
 						<Binding Path="GetDailyReflectionCommand.IsRunning" />
 					</MultiBinding>
 				</StackLayout.IsVisible>
-				<Button Text="CLICK ME" Command="{Binding GetDailyReflectionCommand}" />
 				<Label AutomationId="{x:Static constants:AutomationConstants.DR_Reflection_Title}"
 					   FontSize="Title"
 					   HorizontalTextAlignment="Center"
